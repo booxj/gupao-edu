@@ -55,11 +55,11 @@ public class ChatServer {
 
                     /** 解析Http请求 */
                     pipeline.addLast(new HttpServerCodec());
-                    // 主要是将同一个http请求或响应的多个消息对象变成一个 fullHttpRequest完整的消息对象
-                    pipeline.addLast(new HttpObjectAggregator(64 * 1024));
                     // 主要用于处理大数据流,比如一个1G大小的文件如果你直接传输肯定会撑暴jvm内存的 ,加上这个handler我们就不用考虑这个问题了
                     pipeline.addLast(new ChunkedWriteHandler());
-                    pipeline.addLast(new HttpHandler());
+                    // 主要是将同一个http请求或响应的多个消息对象变成一个 fullHttpRequest完整的消息对象
+                    pipeline.addLast(new HttpObjectAggregator(64 * 1024));
+                    pipeline.addLast(new HttpHandler("webroot", "/im"));
 
                     /** 解析WebSocket请求 */
                     // 请求前缀
