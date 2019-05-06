@@ -10,10 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.booxj.gupao</groupId>
-    <artifactId>gp-spring-v1</artifactId>
+    <artifactId>gp-spring-v2</artifactId>
     <packaging>war</packaging>
 
-    <name>gp-spring-v1 Maven Webapp</name>
+    <name>gp-spring-v2 Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -23,9 +23,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-
     <build>
-        <finalName>gp-spring-v1</finalName>
+        <finalName>gp-spring-v2</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>

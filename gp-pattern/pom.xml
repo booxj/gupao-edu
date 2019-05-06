@@ -18,6 +18,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.booxj.gupao</groupId>
+            <artifactId>gp-core</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
         </dependency>
