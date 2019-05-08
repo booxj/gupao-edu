@@ -36,7 +36,7 @@ public class TomcatHandler extends SimpleChannelInboundHandler {
 
             // 验证url
             for (Map.Entry<Pattern, Class<?>> entry : servletMapping.entrySet()) {
-                if (entry.getKey().matcher(httpRequest.getUri()).matches()) {
+                if (entry.getKey().matcher(request.getUri()).matches()) {
 
                     Servlet servlet = (Servlet) entry.getValue().newInstance();
                     if ("get".equalsIgnoreCase(request.getMethod())) {
