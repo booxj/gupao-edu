@@ -39,7 +39,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         RandomAccessFile file = null;
 
         if (wsUri.equalsIgnoreCase(uri)) {
-            ctx.fireChannelRead(ctx);
+            ctx.fireChannelRead(request.retain());
         } else {
             try {
 
@@ -81,9 +81,9 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
             ctx.write(response);
 
             //将chat.html写到客户端
-            if (ctx.pipeline().get(SslHandler.class)==null) {
+            if (ctx.pipeline().get(SslHandler.class) == null) {
                 ctx.write(new DefaultFileRegion(file.getChannel(), 0, file.length()));
-            }else{
+            } else {
                 ctx.write(new ChunkedNioFile(file.getChannel()));
             }
 
@@ -107,4 +107,5 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
         cause.printStackTrace();
         ctx.close();
     }
+
 }
