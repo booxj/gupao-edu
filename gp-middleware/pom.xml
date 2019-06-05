@@ -21,5 +21,6 @@
         <module>middleware-rabbitmq</module>
         <module>middleware-redis</module>
         <module>middleware-zookeeper</module>
+        <module>middleware-quartz</module>
     </modules>
 </project>

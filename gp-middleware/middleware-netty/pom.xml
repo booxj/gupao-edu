@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>netty-chat</module>
+        <module>netty-tomcat</module>
     </modules>
 
     <parent>
