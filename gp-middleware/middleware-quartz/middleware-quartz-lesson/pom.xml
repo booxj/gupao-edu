@@ -11,5 +11,10 @@
 
     <artifactId>middleware-quartz-lesson</artifactId>
 
+    <description>
+        Quartz 官网教程
+        http://www.quartz-scheduler.org/documentation/quartz-2.3.0/
+        https://www.w3cschool.cn/quartz_doc/ （中文）
+    </description>
 
 </project>
