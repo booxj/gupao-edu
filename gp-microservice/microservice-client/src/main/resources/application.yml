@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: zk-client
+
+server:
+  port: 8771
+
+# fegin
+fegin:
+  hystrix:
+    enabled: true
