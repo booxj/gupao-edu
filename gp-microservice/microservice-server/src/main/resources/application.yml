@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: zk-server
+
+server:
+  port: 0
