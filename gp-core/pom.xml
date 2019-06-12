@@ -12,11 +12,6 @@
     <artifactId>gp-core</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
         <dependency>
