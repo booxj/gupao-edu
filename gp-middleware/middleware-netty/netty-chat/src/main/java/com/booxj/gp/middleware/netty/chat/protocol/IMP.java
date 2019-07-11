@@ -1,7 +1,10 @@
 package com.booxj.gp.middleware.netty.chat.protocol;
 
-public enum IMP {
 
+/**
+ * 自定义IM协议，Instant Messaging Protocol即时通信协议
+ */
+public enum IMP {
     /**
      * 系统消息
      */
@@ -40,4 +43,5 @@ public enum IMP {
     public String toString() {
         return this.name;
     }
+
 }

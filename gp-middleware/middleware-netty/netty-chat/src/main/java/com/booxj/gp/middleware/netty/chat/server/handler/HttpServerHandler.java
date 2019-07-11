@@ -2,17 +2,11 @@ package com.booxj.gp.middleware.netty.chat.server.handler;
 
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
-import io.netty.handler.ssl.SslHandler;
-import io.netty.handler.stream.ChunkedNioFile;
 
 import java.io.File;
 import java.io.RandomAccessFile;
-import java.net.URISyntaxException;
 import java.net.URL;
 
-/**
- * 处理 Http 请求
- */
 public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
     //获取class路径
@@ -83,5 +77,5 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
         cause.printStackTrace();
         ctx.close();
     }
-
 }
+

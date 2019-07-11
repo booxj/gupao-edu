@@ -15,11 +15,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import java.io.IOException;
 
 /**
- * TODO description
+ * 客户端
  *
- * @author booxj
- * @create 2019/7/11 9:58
- * @since
  */
 public class ChatClient {
 
@@ -27,11 +24,11 @@ public class ChatClient {
     private String host;
     private int port;
 
-    public ChatClient(String nickName){
+    public ChatClient(String nickName) {
         this.clientHandler = new ChatClientHandler(nickName);
     }
 
-    public void connect(String host,int port){
+    public void connect(String host, int port) {
         this.host = host;
         this.port = port;
 
@@ -60,7 +57,11 @@ public class ChatClient {
 
 
     public static void main(String[] args) throws IOException {
-        new ChatClient("booXj").connect("127.0.0.1",80);
+        new ChatClient("booXj").connect("127.0.0.1", 80);
+
+        String url = "http://localhost:8080/images/a.png";
+        System.out.println(url.toLowerCase().matches(".*\\.(gif|png|jpg)$"));
+
     }
 
 }
