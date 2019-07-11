@@ -3,35 +3,47 @@ package com.booxj.gp.middleware.netty.chat.protocol;
 
 public class IMMessage {
 
-    private String addr;            //IP地址及端口
-    private String cmd;             //命令类型[LOGIN]或者[SYSTEM]或者[LOGOUT]
-    private long time;              //命令发送时间
-    private int online;             //当前在线人数
-    private String sender;          //发送人
-    private String receiver;        //接收人
-    private String content;         //消息内容
+    private String addr;		//IP地址及端口
+    private String cmd;		//命令类型[LOGIN]或者[SYSTEM]或者[LOGOUT]
+    private long time;		//命令发送时间
+    private int online;		//当前在线人数
+    private String sender;  //发送人
+    private String receiver;	//接收人
+    private String content;	//消息内容
+    private String terminal; //终端
 
-    public IMMessage() {
-    }
+    public IMMessage(){}
 
-    public IMMessage(String cmd, long time, int online, String content) {
+    public IMMessage(String cmd,long time,int online,String content){
         this.cmd = cmd;
         this.time = time;
         this.online = online;
         this.content = content;
+        this.terminal = terminal;
     }
 
-    public IMMessage(String cmd, long time, String sender) {
+    public IMMessage(String cmd,String terminal,long time,String sender){
         this.cmd = cmd;
         this.time = time;
         this.sender = sender;
+        this.terminal = terminal;
     }
 
-    public IMMessage(String cmd, long time, String sender, String content) {
+
+    public IMMessage(String cmd,long time,String sender,String content){
         this.cmd = cmd;
         this.time = time;
         this.sender = sender;
         this.content = content;
+        this.terminal = terminal;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 
     public String getCmd() {
@@ -82,12 +94,12 @@ public class IMMessage {
         this.content = content;
     }
 
-    public String getAddr() {
-        return addr;
+    public String getTerminal() {
+        return terminal;
     }
 
-    public void setAddr(String addr) {
-        this.addr = addr;
+    public void setTerminal(String terminal) {
+        this.terminal = terminal;
     }
 
     @Override

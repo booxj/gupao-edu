@@ -1,7 +1,10 @@
 package com.booxj.gp.middleware.netty.chat.server;
 
-import com.booxj.gp.middleware.netty.chat.server.handler.HttpHandler;
-import com.booxj.gp.middleware.netty.chat.server.handler.WebSocketHandler;
+import com.booxj.gp.middleware.netty.chat.protocol.IMDecoder;
+import com.booxj.gp.middleware.netty.chat.protocol.IMEncoder;
+import com.booxj.gp.middleware.netty.chat.server.handler.HttpServerHandler;
+import com.booxj.gp.middleware.netty.chat.server.handler.TerminalServerHandler;
+import com.booxj.gp.middleware.netty.chat.server.handler.WebSocketServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -51,20 +54,21 @@ public class ChatServer {
                     ChannelPipeline pipeline = ch.pipeline();
 
                     /** 解析自定义协议 */
-
+                    pipeline.addLast(new IMDecoder());  //Inbound
+                    pipeline.addLast(new IMEncoder());  //Outbound
+                    pipeline.addLast(new TerminalServerHandler());  //Inbound
 
                     /** 解析Http请求 */
-                    pipeline.addLast(new HttpServerCodec());
-                    // 主要用于处理大数据流,比如一个1G大小的文件如果你直接传输肯定会撑暴jvm内存的 ,加上这个handler我们就不用考虑这个问题了
-                    pipeline.addLast(new ChunkedWriteHandler());
-                    // 主要是将同一个http请求或响应的多个消息对象变成一个 fullHttpRequest完整的消息对象
-                    pipeline.addLast(new HttpObjectAggregator(64 * 1024));
-                    pipeline.addLast(new HttpHandler("webroot", "/im"));
+                    pipeline.addLast(new HttpServerCodec());  //Outbound
+                    //主要是将同一个http请求或响应的多个消息对象变成一个 fullHttpRequest完整的消息对象
+                    pipeline.addLast(new HttpObjectAggregator(64 * 1024));//Inbound
+                    //主要用于处理大数据流,比如一个1G大小的文件如果你直接传输肯定会撑暴jvm内存的 ,加上这个handler我们就不用考虑这个问题了
+                    pipeline.addLast(new ChunkedWriteHandler());//Inbound、Outbound
+                    pipeline.addLast(new HttpServerHandler());//Inbound
 
                     /** 解析WebSocket请求 */
-                    // 请求前缀
-                    pipeline.addLast(new WebSocketServerProtocolHandler("/im"));
-                    pipeline.addLast(new WebSocketHandler());
+                    pipeline.addLast(new WebSocketServerProtocolHandler("/im"));    //Inbound
+                    pipeline.addLast(new WebSocketServerHandler()); //Inbound
                 }
             });
 

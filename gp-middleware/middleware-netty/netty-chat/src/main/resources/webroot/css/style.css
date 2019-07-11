@@ -251,7 +251,7 @@ max-height: 56px;
  border-bottom:0;
  background-color:#efeff4;
  /*min-height:300px;*/
- padding-bottom: 100px;
+ padding-bottom: 200px;
 }
 .message section a{
  /*white-space:nowrap*/
@@ -529,7 +529,7 @@ time {
  display:-ms-flexbox;
  display:-moz-box;
  position:fixed;
- bottom: 65px;
+ bottom: 221px;
  padding:8px 10px;
  width:100%;
  box-shadow:0 0 1px #85898d;
@@ -588,7 +588,7 @@ time {
  padding:8px 10px;
  width:100%;
  background-color:#fff;
- height: 45px;
+ height: 200px;
 }
 
 .input-box .input {
@@ -597,7 +597,7 @@ time {
  -moz-box-flex:1;
  background-color:#fff;
   -webkit-box-flex:1;
- height: 25px;
+ height: 190px;
  line-height:25px;
 }
 

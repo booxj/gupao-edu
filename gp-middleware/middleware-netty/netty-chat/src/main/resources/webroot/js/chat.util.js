@@ -81,7 +81,7 @@ $(document).ready(function(){
 		sendFlower:function(){
 			if (!window.WebSocket) { return; }
 		    if (CHAT.socket.readyState == WebSocket.OPEN) {
-		    	var message = ("[FLOWER][" + new Date().getTime() + "]" + "[" + CHAT.nickname + "]");
+		    	var message = ("[FLOWER][" + new Date().getTime() + "]" + "[" + CHAT.nickname + "][WebSocket]");
 		    	CHAT.socket.send(message);
 		    	$("#send-message").focus();
 		    } else {
@@ -208,7 +208,7 @@ $(document).ready(function(){
 			    	appendToPanel(e.data);
 			    };
 			    CHAT.socket.onopen = function(e) {
-			    	CHAT.socket.send("[LOGIN][" + new Date().getTime() +"][" + nickname + "]");
+			    	CHAT.socket.send("[LOGIN][" + new Date().getTime() +"][" + nickname + "][WebSocket]");
 			    };
 			    CHAT.socket.onclose = function(e) {
 			        appendToPanel("[SYSTEM][" + new Date().getTime() + "][0] - 服务器关闭,暂不能聊天!");
