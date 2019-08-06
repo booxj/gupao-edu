@@ -17,6 +17,7 @@
     <modules>
         <module>gp-spring-v1</module>
         <module>gp-spring-v2</module>
+        <module>spring-test</module>
     </modules>
 
     <description>手写spring</description>

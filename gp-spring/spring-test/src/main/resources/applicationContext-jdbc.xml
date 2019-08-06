@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!-- 配置url -->
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/demo"></property>
+        <!-- 配置driver -->
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <!-- 配置username -->
+        <property name="user" value="root"></property>
+        <!-- 配置password -->
+        <property name="password" value="123456"></property>
+        <!-- 数据库的初始化连接数 -->
+        <property name="initialPoolSize" value="3"></property>
+        <!-- 数据库的最大连接数 -->
+        <property name="maxPoolSize" value="10"></property>
+        <!-- 数据库最多执行的事务 -->
+        <property name="maxStatements" value="100"></property>
+        <!-- 连接数量不够时每次的增量 -->
+        <property name="acquireIncrement" value="2"></property>
+    </bean>
+
+    <!--  创建jdbcTemplate对象 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource">
+        </property>
+    </bean>
+
+    <!-- 定义事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 下面使用aop切面的方式来实现 -->
+    <tx:advice id="jdbcAdvice" transaction-manager="transactionManager">
+        <!--配置事务传播性，隔离级别以及超时回滚等问题 -->
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+            <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+            <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+            <tx:method name="*" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <!--配置事务切点 -->
+        <aop:pointcut id="services" expression="execution(* com.booxj.spring.service..*(..))"/>
+        <aop:advisor pointcut-ref="services" advice-ref="jdbcAdvice"/>
+    </aop:config>
+
+</beans>
