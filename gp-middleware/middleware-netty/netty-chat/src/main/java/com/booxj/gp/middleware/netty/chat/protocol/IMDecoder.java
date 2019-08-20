@@ -62,22 +62,22 @@ public class IMDecoder extends ByteToMessageDecoder {
                 content = m.group(3);
             }
 
-            String[] heards = header.split("\\]\\[");
+            String[] headers = header.split("\\]\\[");
             long time = 0;
             try {
-                time = Long.parseLong(heards[1]);
+                time = Long.parseLong(headers[1]);
             } catch (Exception e) {
             }
-            String nickName = heards[2];
+            String nickName = headers[2];
             //昵称最多十个字
             nickName = nickName.length() < 10 ? nickName : nickName.substring(0, 9);
 
             if (msg.startsWith("[" + IMP.LOGIN.getName() + "]")) {
-                return new IMMessage(heards[0], heards[3], time, nickName);
+                return new IMMessage(headers[0], headers[3], time, nickName);
             } else if (msg.startsWith("[" + IMP.CHAT.getName() + "]")) {
-                return new IMMessage(heards[0], time, nickName, content);
+                return new IMMessage(headers[0], time, nickName, content);
             } else if (msg.startsWith("[" + IMP.FLOWER.getName() + "]")) {
-                return new IMMessage(heards[0], heards[3], time, nickName);
+                return new IMMessage(headers[0], headers[3], time, nickName);
             } else {
                 return null;
             }

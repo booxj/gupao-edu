@@ -27,7 +27,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
-        String uri = request.getUri();
+        String uri = request.uri();
 
         RandomAccessFile file = null;
         try {
@@ -38,7 +38,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
             return;
         }
 
-        HttpResponse response = new DefaultHttpResponse(request.getProtocolVersion(), HttpResponseStatus.OK);
+        HttpResponse response = new DefaultHttpResponse(request.protocolVersion(), HttpResponseStatus.OK);
         String contextType = "text/html;";
         if (uri.endsWith(".css")) {
             contextType = "text/css;";
@@ -48,13 +48,13 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
             String ext = uri.substring(uri.lastIndexOf("."));
             contextType = "image/" + ext;
         }
-        response.headers().set(HttpHeaders.Names.CONTENT_TYPE, contextType + "charset=utf-8;");
+        response.headers().set(HttpHeaderNames.CONTENT_TYPE, contextType + "charset=utf-8;");
 
-        boolean keepAlive = HttpHeaders.isKeepAlive(request);
+        boolean keepAlive = HttpUtil.isKeepAlive(request);
 
         if (keepAlive) {
-            response.headers().set(HttpHeaders.Names.CONTENT_LENGTH, file.length());
-            response.headers().set(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
+            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, file.length());
+            response.headers().set(HttpHeaderNames.CONNECTION, HttpHeaderValues.KEEP_ALIVE);
         }
         ctx.write(response);
 

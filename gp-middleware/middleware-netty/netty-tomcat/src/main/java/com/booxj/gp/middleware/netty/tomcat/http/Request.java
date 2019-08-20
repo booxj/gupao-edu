@@ -1,7 +1,7 @@
 package com.booxj.gp.middleware.netty.tomcat.http;
 
-import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpRequest;
+import io.netty.handler.codec.http.HttpUtil;
 import io.netty.handler.codec.http.QueryStringDecoder;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class Request {
     }
 
     public boolean isKeepAlive() {
-        return HttpHeaders.isKeepAlive(httpRequest);
+        return HttpUtil.isKeepAlive(httpRequest);
     }
 
     public Map<String, List<String>> getParameters() {
