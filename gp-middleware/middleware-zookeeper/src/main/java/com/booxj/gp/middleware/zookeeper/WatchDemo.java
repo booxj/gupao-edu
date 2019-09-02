@@ -16,7 +16,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
  */
 public class WatchDemo {
 
-    private static String CONNECTION_STR = "192.168.13.102:2181,192.168.13.103:2181,192.168.13.104:2181";
+    private static String CONNECTION_STR = "localhost:2181,localhost:2182,localhost:2183";
 
     public static void main(String[] args) throws Exception {
         //PathChildCache  --针对于子节点的创建、删除和更新 触发事件
@@ -30,7 +30,6 @@ public class WatchDemo {
         addListenerWithChild(curatorFramework);
 
         System.in.read();
-
     }
 
     //配置中心

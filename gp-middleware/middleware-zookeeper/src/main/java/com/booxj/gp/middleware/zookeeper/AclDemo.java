@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AclDemo {
 
-    private static String CONNECTION_STR = "localhost:2181,localhost:2182,192.168.13.104:2183";
+    private static String CONNECTION_STR = "localhost:2181,localhost:2182,localhost:2183";
 
     public static void main(String[] args) {
 
