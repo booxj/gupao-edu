@@ -1,7 +1,5 @@
 package com.booxj.gp.middleware.quartz.lesson2;
 
-import static org.quartz.CronScheduleBuilder.cronSchedule;
-
 /**
  * Quartz API
  * <p>

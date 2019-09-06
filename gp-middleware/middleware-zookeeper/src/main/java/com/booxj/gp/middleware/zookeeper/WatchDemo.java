@@ -19,7 +19,7 @@ public class WatchDemo {
     private static String CONNECTION_STR = "localhost:2181,localhost:2182,localhost:2183";
 
     public static void main(String[] args) throws Exception {
-        //PathChildCache  --针对于子节点的创建、删除和更新 触发事件
+        //PathChildCache  针对于子节点的创建、删除和更新 触发事件
         //NodeCache  针对当前节点的变化触发事件
         //TreeCache  综合事件
 

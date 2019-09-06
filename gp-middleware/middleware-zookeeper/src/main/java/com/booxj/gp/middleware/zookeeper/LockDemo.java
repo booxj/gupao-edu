@@ -5,13 +5,19 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 
+/**
+ * Curator提供了三种分布式锁
+ * InterProcessMutex 分布式可重入锁
+ * InterProcessSemaphoreMutex 分布式排他锁
+ * InterProcessReadWriteLock 分布式读写锁
+ */
 public class LockDemo {
 
     private static String CONNECTION_STR = "localhost:2181,localhost:2182,localhost:2183";
 
     public static void main(String[] args) {
         CuratorFramework curatorFramework = CuratorFrameworkFactory.builder().
-                connectString(CONNECTION_STR).sessionTimeoutMs(50000000).
+                connectString(CONNECTION_STR).sessionTimeoutMs(5000).
                 retryPolicy(new ExponentialBackoffRetry(1000, 3)).build();
         curatorFramework.start();
 

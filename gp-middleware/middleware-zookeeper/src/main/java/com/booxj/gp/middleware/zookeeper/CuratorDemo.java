@@ -17,7 +17,7 @@ public class CuratorDemo {
                 .retryPolicy(new ExponentialBackoffRetry(1000, 3))  //重试策略
                 // ExponentialBackoffRetry 衰减重试
                 // RetryOneTime 只重试一次
-                // RetryUntilElapsed
+                // RetryUntilElapsed 一直重试直到达到规定的时间
                 // RetryNTimes
                 .build();
 
