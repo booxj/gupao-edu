@@ -12,5 +12,12 @@
 
     <artifactId>middleware-rabbitmq</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

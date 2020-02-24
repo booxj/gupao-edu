@@ -12,7 +12,6 @@
 
     <groupId>com.booxj.gupao</groupId>
     <artifactId>gp-mybatis</artifactId>
-    <version>${gp.version}</version>
 
     <description>手写mybatis</description>
 

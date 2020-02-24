@@ -12,7 +12,6 @@
 
     <groupId>com.booxj.gupao</groupId>
     <artifactId>gp-pattern</artifactId>
-    <version>${gp.version}</version>
 
     <description>设计模式练习</description>
 

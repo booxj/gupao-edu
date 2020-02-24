@@ -6,6 +6,8 @@ import org.quartz.JobExecutionException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * TODO description
@@ -29,6 +31,18 @@ public class HelloJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        System.err.println(simpleDateFormat.format(new Date()) + " : execute HelloJob.execute()");
+        System.err.println(Thread.currentThread().getName() + " : " + simpleDateFormat.format(new Date()) + " : execute HelloJob.execute()");
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2,2,1};
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(map.get(nums[i])==null){
+                map.put(nums[i],1);
+            }else{
+                System.out.println(i);
+            }
+        }
     }
 }

@@ -9,8 +9,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * TODO description
- * <p>
+ * 时间日期工具类
  *
  * @author booxj
  * @create 2019/6/5 13:44

@@ -1,7 +1,6 @@
 package com.booxj.gp.pattern.delegate.mvc;
 
 import com.booxj.gp.pattern.delegate.mvc.controller.HelloController;
-import net.sf.cglib.proxy.MethodInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

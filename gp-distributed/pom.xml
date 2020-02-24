@@ -12,7 +12,6 @@
 
     <groupId>com.booxj.gupao</groupId>
     <artifactId>gp-distributed</artifactId>
-    <version>${gp.version}</version>
 
     <description>分布式知识点整理</description>
 

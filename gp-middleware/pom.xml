@@ -22,5 +22,6 @@
         <module>middleware-redis</module>
         <module>middleware-zookeeper</module>
         <module>middleware-quartz</module>
+        <module>middleware-kafka</module>
     </modules>
 </project>

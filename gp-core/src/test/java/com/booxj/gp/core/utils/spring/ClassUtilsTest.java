@@ -2,20 +2,16 @@ package com.booxj.gp.core.utils.spring;
 
 import com.booxj.gp.core.utils.CollectionUtils;
 import org.junit.Test;
+import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.Set;
 
-/**
- * @Company: 浙江核新同花顺网络信息股份有限公司
- * @ClassName: ClassUtilsTest.java
- * @Description: TODO
- * @Author: wangbo@myhexin.com
- * @CreateDate 2019/4/22 16:18
- * @version: 2.1.0
- */
+
 public class ClassUtilsTest {
 
     @Test
@@ -35,5 +31,26 @@ public class ClassUtilsTest {
                 e.printStackTrace();
             }
         });
+    }
+
+
+    @Test
+    public void getParameterNames() {
+
+        LocalVariableTableParameterNameDiscoverer parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
+        for (Method method : ClassUtils.class.getMethods()) {
+
+           for (Parameter parameter:method.getParameters()){
+               System.out.println(parameter);
+           }
+//            StringBuilder sb = new StringBuilder(method.getName() + " : ");
+//            String[] parameterNames = parameterNameDiscoverer.getParameterNames(method);
+//            if (parameterNames!=null&&parameterNames.length>0) {
+//                for (int i = 0; i < parameterNames.length; i++) {
+//                    sb.append(parameterNames[i]).append(",");
+//                }
+//            }
+//            System.out.println(sb.toString());
+        }
     }
 }
