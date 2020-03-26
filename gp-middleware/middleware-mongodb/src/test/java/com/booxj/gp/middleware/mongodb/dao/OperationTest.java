@@ -2,7 +2,7 @@ package com.booxj.gp.middleware.mongodb.dao;
 
 import com.booxj.gp.middleware.mongodb.dto.Company;
 import com.booxj.gp.middleware.mongodb.dto.User;
-import com.mongodb.BasicDBObject;
+import org.bson.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -100,10 +99,10 @@ public class OperationTest {
         mongoTemplate.updateFirst(query2, update2, User.class);
 
         // 删
-        Query query3 = Query.query(Criteria.where("id").is(1).and("work_history._id").is(company.getId()));
-        Update update3 = new Update();
-        update3.unset("work_history.$");
-        mongoTemplate.updateFirst(query2, update2, User.class);
+//        Query query3 = Query.query(Criteria.where("id").is(1).and("work_history._id").is(company.getId()));
+//        Update update3 = new Update();
+//        update3.unset("work_history.$");
+//        mongoTemplate.updateFirst(query2, update2, User.class);
 
     }
 
@@ -121,7 +120,7 @@ public class OperationTest {
      * @throws IllegalAccessException
      */
     @Test
-    public void list查询操作() throws NoSuchFieldException, IllegalAccessException {
+    public void list查询操作() {
         TypedAggregation aggregation = Aggregation.newAggregation(User.class,
                 Aggregation.match(Criteria.where("id").is(1)),
                 Aggregation.unwind("workHistory"),
@@ -129,7 +128,18 @@ public class OperationTest {
                 Aggregation.sort(Sort.Direction.DESC, "workHistory.id"),
                 Aggregation.limit(10)
         );
-        AggregationResults<BasicDBObject> results = mongoTemplate.aggregate(aggregation, BasicDBObject.class);
+        AggregationResults<Document> results = mongoTemplate.aggregate(aggregation, Document.class);
+
+        List<Company> companyList = new ArrayList<>();
+        results.forEach(r -> {
+            long id = r.get("work_history",Document.class).getLong("_id");
+            String  name = r.get("work_history",Document.class).getString("name");
+            String address = r.get("work_history",Document.class).getString("address");
+            Company company = new Company(id,name,address);
+            companyList.add(company);
+        });
+
+        System.out.println(companyList);
     }
 
 }
